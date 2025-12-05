@@ -6,25 +6,25 @@ import { LuSquareArrowLeft } from "react-icons/lu";
 
 export default function Calculator() {
   const [data, setData] = useState("");
-  const [bracket,setBracket] = useState(true);
+  const [bracket, setBracket] = useState(true);
 
   const handleValue = (event) => {
     let values = event.target.value;
-    setData(data.concat(values))
+    setData(data.concat(values));
     setBracket(!bracket);
   };
 
   const calculation = () => {
     setData(eval(data).toString());
-  }
+  };
 
   const clearAll = () => {
     setData("");
-  }
+  };
 
   const clear = () => {
-    setData(data.slice(0,-1))
-  }
+    setData(data.slice(0, -1));
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 p-4">
@@ -35,6 +35,11 @@ export default function Calculator() {
             value={data}
             placeholder="0"
             onChange={(e) => setData(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                calculation();
+              }
+            }}
             className="w-full p-8 rounded-xl bg-gray-600 text-white text-right text-2xl outline-none shadow-inner shadow-gray-800"
           />
         </div>
@@ -42,41 +47,101 @@ export default function Calculator() {
         {/* Icons Row */}
         <div className="flex justify-between mb-5">
           <div className="flex gap-3 text-white">
-            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700"><MdHistory /></button>
-            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700"><BiRuler /></button>
-            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700"><IoIosCheckboxOutline /></button>
+            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700">
+              <MdHistory />
+            </button>
+            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700">
+              <BiRuler />
+            </button>
+            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700">
+              <IoIosCheckboxOutline />
+            </button>
           </div>
           <div className="text-white">
-            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700"><LuSquareArrowLeft /></button>
+            <button className="bg-black p-3 rounded-xl shadow-md shadow-gray-700">
+              <LuSquareArrowLeft />
+            </button>
           </div>
         </div>
 
         {/* Buttons */}
         <div className="grid grid-cols-4 gap-3">
-          <button onClick={handleValue} value={bracket?"(":")"} className="btn">()</button>
-          <button onClick={handleValue} value="/" className="btn spec">/</button>
-          <button onClick={handleValue} value="%" className="btn spec">%</button>
-          <button onClick={clearAll} value="AC" className="btn bg-red-400 text-black font-bold shadow-lg">AC</button>
+          <button
+            onClick={handleValue}
+            value={bracket ? "(" : ")"}
+            className="btn"
+          >
+            ()
+          </button>
+          <button onClick={handleValue} value="/" className="btn spec">
+            /
+          </button>
+          <button onClick={handleValue} value="%" className="btn spec">
+            %
+          </button>
+          <button
+            onClick={clearAll}
+            value="AC"
+            className="btn bg-red-400 text-black font-bold shadow-lg"
+          >
+            AC
+          </button>
 
-          <button onClick={handleValue} value="7" className="btn">7</button>
-          <button onClick={handleValue} value="8" className="btn">8</button>
-          <button onClick={handleValue} value="9" className="btn">9</button>
-          <button onClick={handleValue} value="*" className="btn spec">x</button>
+          <button onClick={handleValue} value="7" className="btn">
+            7
+          </button>
+          <button onClick={handleValue} value="8" className="btn">
+            8
+          </button>
+          <button onClick={handleValue} value="9" className="btn">
+            9
+          </button>
+          <button onClick={handleValue} value="*" className="btn spec">
+            x
+          </button>
 
-          <button onClick={handleValue} value="4" className="btn">4</button>
-          <button onClick={handleValue} value="5" className="btn">5</button>
-          <button onClick={handleValue} value="6" className="btn">6</button>
-          <button onClick={handleValue} value="-" className="btn spec">-</button>
+          <button onClick={handleValue} value="4" className="btn">
+            4
+          </button>
+          <button onClick={handleValue} value="5" className="btn">
+            5
+          </button>
+          <button onClick={handleValue} value="6" className="btn">
+            6
+          </button>
+          <button onClick={handleValue} value="-" className="btn spec">
+            -
+          </button>
 
-          <button onClick={handleValue} value="1" className="btn">1</button>
-          <button onClick={handleValue} value="2" className="btn">2</button>
-          <button onClick={handleValue} value="3" className="btn">3</button>
-          <button onClick={handleValue} value="+" className="btn spec">+</button>
+          <button onClick={handleValue} value="1" className="btn">
+            1
+          </button>
+          <button onClick={handleValue} value="2" className="btn">
+            2
+          </button>
+          <button onClick={handleValue} value="3" className="btn">
+            3
+          </button>
+          <button onClick={handleValue} value="+" className="btn spec">
+            +
+          </button>
 
-          <button onClick={handleValue} value="0" className="btn">0</button>
-          <button onClick={clear} value="Back" className="btn">Back</button>
-          <button onClick={handleValue} value="." className="btn">.</button>
-          <button onClick={calculation} value="Enter" className="btn bg-green-400 text-black font-bold shadow-lg">=</button>
+          <button onClick={handleValue} value="0" className="btn">
+            0
+          </button>
+          <button onClick={clear} value="Back" className="btn">
+            Back
+          </button>
+          <button onClick={handleValue} value="." className="btn">
+            .
+          </button>
+          <button
+            onClick={calculation}
+            value="Enter"
+            className="btn bg-green-400 text-black font-bold shadow-lg"
+          >
+            =
+          </button>
         </div>
       </div>
 
