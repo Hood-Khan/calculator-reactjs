@@ -76,7 +76,7 @@ export default function Calculator() {
           <button onClick={handleValue} value="0" className="btn">0</button>
           <button onClick={clear} value="Back" className="btn">Back</button>
           <button onClick={handleValue} value="." className="btn">.</button>
-          <button onClick={calculation} value="=" className="btn bg-green-400 text-black font-bold shadow-lg">=</button>
+          <button onClick={calculation} value="Enter" className="btn bg-green-400 text-black font-bold shadow-lg">=</button>
         </div>
       </div>
 
